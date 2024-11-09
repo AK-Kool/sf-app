@@ -38,10 +38,11 @@
   </div>
   <div>
     <lightning-datatable
-            key-field="Id"
-            columns={columns}
-            data={data}
-            hide-checkbox-column
+      key-field="Id"
+      columns={columns}
+      data={data}
+      hide-checkbox-column
+      onrowaction={handleRowAction}
     >
     </lightning-datatable>
   </div>

@@ -1,3 +1,3 @@
 <aura:application extends="force:slds">
-    <c:rootCmp />
+    <c:rootCmp onrecordselect="{!c.handleRecordSelect}" />
 </aura:application>
