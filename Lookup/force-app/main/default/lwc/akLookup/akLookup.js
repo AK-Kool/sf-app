@@ -77,6 +77,12 @@ export default class AkLookup extends LightningElement {
     handleMouseClick(e) {
         if (e.type === `mousedown` && e.button === 0) {
             this._cancelBlur = true;
+        } else if (e.type === `mouseup` && e.button === 0) {
+            const inputEle = this.template.querySelector(`.slds-combobox__input`);
+            if (inputEle) {
+                inputEle.focus();
+            }
+            this._cancelBlur = false;
         }
     }
 
@@ -86,6 +92,10 @@ export default class AkLookup extends LightningElement {
         const element = this.template.querySelector(`.slds-combobox`);
         if (element) {
             this.toggleCss(element, `slds-is-open`, false);
+        }
+        const inputEle = this.template.querySelector(`.slds-combobox__input`);
+        if (inputEle) {
+            inputEle.blur();
         }
     }
 }
