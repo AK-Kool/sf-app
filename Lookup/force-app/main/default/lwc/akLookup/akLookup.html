@@ -4,12 +4,11 @@
             <label class="slds-form-element__label" for="combobox-id-4" id="combobox-label-id-44">Relate To</label>
             <div class="slds-form-element__control">
                 <div class="slds-combobox_container">
-                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
-                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click">
+                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left" role="none">
                             <input
                                 type="text"
-                                class="slds-input slds-combobox__input slds-has-focus slds-combobox__input-value"
-                                id="combobox-id-4"
+                                class="slds-input slds-combobox__input slds-combobox__input-value"
                                 aria-activedescendant="option1"
                                 aria-autocomplete="list"
                                 aria-controls="listbox-id-4"
@@ -18,9 +17,11 @@
                                 autocomplete="off"
                                 role="combobox"
                                 placeholder="Search..."
-                                value="salesforce"
+                                onblur={handleInputBlur}
+                                oninput={handleInput}
+                                onclick={handleInputClick}
                             />
-                            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                            <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_left">
                                 <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
                                     <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#search"></use>
                                 </svg>
@@ -32,19 +33,21 @@
                             aria-label="Placeholder"
                             tabindex="0"
                             aria-busy="false"
+                            onmousedown={handleMouseClick}
+                            onmouseup={handleMouseClick}
                         >
                             <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                                 <li role="presentation" class="slds-listbox__item">
                                     <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term" role="option">
                                         <span class="slds-media__body">
-                                            <span class="tab-span" onclick={handleTabClick}>All</span>
-                                            <span class="tab-span" onclick={handleTabClick}>Company</span>
-                                            <span class="tab-span" onclick={handleTabClick}>Industries and Contacts</span>
+                                            <template lwc:if={tabs} for:each={tabs} for:item="tab">
+                                                <span key={tab} class="tab-span" onclick={handleTabClick}>{tab}</span>
+                                            </template>
                                         </span>
                                     </div>
                                 </li>
                                 <template lwc:if={searchResults} for:each={searchResults} for:item="row">
-                                    <li key={row.Id} role="presentation" class="slds-listbox__item">
+                                    <li key={row.Id} role="presentation" class="slds-listbox__item" onclick={handleRowClick} data-rowid={row.Id}>
                                         <div
                                             class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
                                             role="option"
