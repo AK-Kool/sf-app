@@ -1,0 +1,30 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_6-of-12">
+                <div class="slds-grid slds-gutters slds-align_absolute-center">
+                    <div class="slds-col">
+                        <lightning-combobox name="Email Type" value={value} placeholder="Enter Email Type"
+                            options={options} onchange={handleChange}>
+                        </lightning-combobox>
+                    </div>
+                    <div class="slds-col">
+                        <lightning-input placeholder="Enter Email Address" type="email"></lightning-input>
+                    </div>
+                    <div class="slds-col slds-no-flex slds-align_absolute-center" style="margin-top: 20px">
+                        <lightning-button-icon icon-name="utility:delete" alternative-text="Delete"
+                            class="slds-m-left_xx-small" title="Delete" disabled></lightning-button-icon>
+                    </div>
+                </div>
+                <div style="margin-left: 10px;">
+                    <input 
+                        type="button"
+                        value="Click Me"/>
+                </div>
+            </div>
+            <div class="slds-col slds-size_6-of-12">
+                <!-- Additional content can go here -->
+            </div>
+        </div>
+    </lightning-card>
+</template>

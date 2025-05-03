@@ -1,0 +1,22 @@
+<template>
+  <lightning-card>
+    <div class="slds-grid slds-wrap">
+      <div class="slds-col slds-size_6-of-12">
+        <div class="slds-m-around_medium">
+          <lightning-record-edit-form
+            object-api-name={objectApiName}
+            record-id={recordId}
+          >
+            <lightning-input-field field-name={nameField}>
+            </lightning-input-field>
+            <div class="slds-var-m-top_medium">
+              <lightning-button variant="brand" type="submit" label="Save">
+              </lightning-button>
+            </div>
+          </lightning-record-edit-form>
+        </div>
+      </div>
+      <div class="slds-col slds-size_6-of-12"></div>
+    </div>
+  </lightning-card>
+</template>
