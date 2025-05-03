@@ -12,4 +12,12 @@ export default class AkRoot extends LightningElement {
         const result = await getContacts({ searchText: '' });
         this.searchResults = result;
     }
+
+    handleTabChange(e) {
+        alert(e.detail);
+    }
+
+    handleSearch(e) {
+        alert(e.detail);
+    }
 }

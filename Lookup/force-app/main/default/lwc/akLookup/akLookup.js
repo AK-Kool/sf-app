@@ -6,6 +6,8 @@ export default class AkLookup extends LightningElement {
     _isComponentRendered = false;
     _tabs;
     _cancelBlur = false;
+    _searchKey = ``;
+    _debounceTimeout;
 
     @track results;
 
@@ -29,12 +31,13 @@ export default class AkLookup extends LightningElement {
     }
 
     handleTabClick(e) {
-        this._cancelBlur = true;
         if (e.target.innerText !== this._activeTab) {
             this.template.querySelectorAll(`.tab-span`).forEach((row) => {
                 if (row.innerText === this._activeTab || row.innerText === e.target.innerText) row.classList.toggle(`active`);
             });
             this._activeTab = e.target.innerText;
+
+            this.dispatchEvent(new CustomEvent('tabchange', { detail: this._activeTab }));
         }
     }
 
@@ -57,10 +60,16 @@ export default class AkLookup extends LightningElement {
     }
 
     handleInput(e) {
-        const element = this.template.querySelector(`.slds-combobox`);
-        if (element) {
-            this.toggleCss(element, `slds-is-open`, true);
-        }
+        clearTimeout(this._debounceTimeout);
+        this._searchKey = e.target.value;
+        this._debounceTimeout = setTimeout(() => {
+            const element = this.template.querySelector(`.slds-combobox`);
+            if (element) {
+                this.toggleCss(element, `slds-is-open`, true);
+            }
+
+            this.dispatchEvent(new CustomEvent('search', { detail: this._searchKey }));
+        }, 300);
     }
 
     handleInputClick(e) {
@@ -97,5 +106,9 @@ export default class AkLookup extends LightningElement {
         if (inputEle) {
             inputEle.blur();
         }
+    }
+
+    disconnectedCallback() {
+        clearTimeout(this._debounceTimeout);
     }
 }
