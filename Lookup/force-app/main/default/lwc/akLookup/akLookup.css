@@ -1,0 +1,12 @@
+.tab-span {
+    border: 1px solid #171717;
+    border-radius: 4px;
+    margin-right: 5px;
+    padding: 0 5px;
+}
+.tab-span:hover {
+    background-color: #9b8a8a;
+}
+.tab-span.active {
+    background-color: #9b8a8a;
+}
