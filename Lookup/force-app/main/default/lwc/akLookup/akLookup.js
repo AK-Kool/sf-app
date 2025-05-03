@@ -52,7 +52,7 @@ export default class AkLookup extends LightningElement {
     }
 
     // input events
-    handleInputBlur(e) {
+    handleInputBlur() {
         if (this._cancelBlur) return;
         const element = this.template.querySelector(`.slds-combobox`);
         if (element) {
@@ -73,7 +73,7 @@ export default class AkLookup extends LightningElement {
         }, 300);
     }
 
-    handleInputClick(e) {
+    handleInputClick() {
         const element = this.template.querySelector(`.slds-combobox`);
         if (element) {
             this.toggleCss(element, `slds-is-open`, true);
