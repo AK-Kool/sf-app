@@ -15,7 +15,6 @@ export default class AkLookup extends LightningElement {
     set searchResults(value) {
         this.results = value;
     }
-
     get searchResults() {
         return this.results;
     }
@@ -25,10 +24,12 @@ export default class AkLookup extends LightningElement {
         this._tabs = value;
         this._activeTab = this._tabs[0];
     }
-
     get tabs() {
         return this._tabs;
     }
+
+    @api label = `Lookup`;
+    @api placeholder = `Search`;
 
     handleTabClick(e) {
         if (e.target.innerText !== this._activeTab) {
